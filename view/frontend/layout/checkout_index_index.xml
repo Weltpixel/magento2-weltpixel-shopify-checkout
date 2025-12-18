@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.summary.additional">
+            <block class="WeltPixel\ShopifyCheckout\Block\Checkout\Button"
+                   name="weltpixel.shopifycheckout.summary.button"
+                   template="WeltPixel_ShopifyCheckout::checkout/button.phtml"
+                   after="-"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,23 @@
+<?php
+/** @var $block \WeltPixel\ShopifyCheckout\Block\Checkout\Button */
+
+if (!$block->canRender()) {
+    return;
+}
+
+$jsonFlags = JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT;
+
+if ($block->isSeparateBehavior()) :
+    $buttonId = 'weltpixel-shopifycheckout-button-' . uniqid();
+    $config = $block->getHandoffConfig('#' . $buttonId);
+    ?>
+    <div class="weltpixel-shopifycheckout">
+        <button type="button"
+                id="<?= $block->escapeHtmlAttr($buttonId) ?>"
+                class="action primary checkout"
+                data-mage-init='{"WeltPixel_ShopifyCheckout/js/handoff": <?= /* @noEscape */ json_encode($config, $jsonFlags) ?>}'>
+            <span><?= $block->escapeHtml($block->getButtonLabel()) ?></span>
+        </button>
+        <div class="weltpixel-shopifycheckout__feedback" data-role="feedback" aria-live="polite"></div>
+    </div>
+<?php endif; ?>

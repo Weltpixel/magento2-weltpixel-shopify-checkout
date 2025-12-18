@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="WeltPixel\ShopifyCheckout\Api\QuoteSessionRepositoryInterface"
+                type="WeltPixel\ShopifyCheckout\Model\Checkout\QuoteSessionRepository"/>
+    <type name="Magento\Quote\Model\ValidationRules\AllowedCountryValidationRule">
+        <plugin name="weltpixel_shopify_allowed_country_override"
+                type="WeltPixel\ShopifyCheckout\Plugin\Quote\ValidationRules\AllowedCountryValidationRulePlugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Helper\Data">
+        <plugin name="weltpixel_shopifycheckout_override_checkout_url"
+                type="WeltPixel\ShopifyCheckout\Plugin\Checkout\Helper\DataPlugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="weltpixel_shopify_sync_orders" xsi:type="object">WeltPixel\ShopifyCheckout\Console\Command\SyncOrders</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

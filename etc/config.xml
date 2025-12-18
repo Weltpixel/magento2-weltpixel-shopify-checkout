@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <weltpixel_shopifycheckout>
+            <general>
+                <enabled>0</enabled>
+                <environment>sandbox</environment>
+                <checkout_behavior>separate</checkout_behavior>
+                <create_products_before_checkout>1</create_products_before_checkout>
+            </general>
+        </weltpixel_shopifycheckout>
+        <payment>
+            <weltpixel_shopifycheckout>
+                <active>0</active>
+                <model>WeltPixel\ShopifyCheckout\Model\Payment\Method\Shopify</model>
+                <group>offline</group>
+                <title>Shopify Checkout</title>
+            </weltpixel_shopifycheckout>
+        </payment>
+    </default>
+</config>

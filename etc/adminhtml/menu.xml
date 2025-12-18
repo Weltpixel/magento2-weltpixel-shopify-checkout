@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="WeltPixel_ShopifyCheckout::ShopifyCheckout_Label"
+             title="Shopify Checkout"
+             module="WeltPixel_ShopifyCheckout"
+             sortOrder="90"
+             parent="WeltPixel_Backend::WeltPixel"
+             resource="WeltPixel_ShopifyCheckout::ShopifyCheckout_Label"/>
+        <add id="WeltPixel_ShopifyCheckout::ShopifyCheckout"
+             title="Shopify Checkout Settings"
+             module="WeltPixel_ShopifyCheckout"
+             action="adminhtml/system_config/edit/section/weltpixel_shopifycheckout/"
+             sortOrder="10"
+             parent="WeltPixel_ShopifyCheckout::ShopifyCheckout_Label"
+             resource="WeltPixel_ShopifyCheckout::ShopifyCheckout"/>
+    </menu>
+</config>

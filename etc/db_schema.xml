@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/DeclarativeSchema/etc/schema.xsd">
+    <table name="weltpixel_shopifycheckout_quote" resource="default" engine="innodb" comment="WeltPixel Shopify Checkout Quote Metadata">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false" comment="Quote ID"/>
+        <column xsi:type="varchar" name="checkout_token" nullable="true" length="255" comment="Shopify Checkout Token"/>
+        <column xsi:type="varchar" name="checkout_id" nullable="true" length="255" comment="Shopify Checkout ID"/>
+        <column xsi:type="text" name="checkout_url" nullable="true" comment="Shopify Checkout URL"/>
+        <column xsi:type="varchar" name="status" nullable="true" length="64" comment="Checkout Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="WELTPIXEL_SHOPIFYCHECKOUT_QUOTE_QUOTE_ID_UNQ">
+            <column name="quote_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="WELTPIXEL_SHOPIFYCHECKOUT_QUOTE_ID_SALES_QUOTE"
+                    table="weltpixel_shopifycheckout_quote"
+                    column="quote_id"
+                    referenceTable="quote"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="WELTPIXEL_SHOPIFYCHECKOUT_QUOTE_TOKEN_IDX">
+            <column name="checkout_token"/>
+        </index>
+        <index referenceId="WELTPIXEL_SHOPIFYCHECKOUT_QUOTE_STATUS_IDX">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="weltpixel_shopifycheckout_product_map" resource="default" engine="innodb"
+           comment="WeltPixel Shopify Checkout Dynamic Product Map">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="255" comment="Magento SKU"/>
+        <column xsi:type="varchar" name="environment" nullable="false" length="32" comment="Shopify Environment"/>
+        <column xsi:type="varchar" name="shopify_product_id" nullable="false" length="64" comment="Shopify Product ID"/>
+        <column xsi:type="varchar" name="shopify_variant_id" nullable="false" length="64" comment="Shopify Variant ID"/>
+        <column xsi:type="varchar" name="shopify_image_id" nullable="true" length="64" comment="Shopify Image ID"/>
+        <column xsi:type="varchar" name="sync_hash" nullable="true" length="64" comment="Synchronization Hash"/>
+        <column xsi:type="smallint" name="is_archived" nullable="false" default="0" comment="Archived Flag"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="WELTPIXEL_SHOPIFYCHECKOUT_PRODUCT_MAP_SKU_ENV_UNQ">
+            <column name="sku"/>
+            <column name="environment"/>
+        </constraint>
+        <index referenceId="WELTPIXEL_SHOPIFYCHECKOUT_PRODUCT_MAP_SKU_IDX">
+            <column name="sku"/>
+        </index>
+        <index referenceId="WELTPIXEL_SHOPIFYCHECKOUT_PRODUCT_MAP_ENV_IDX">
+            <column name="environment"/>
+        </index>
+    </table>
+</schema>
