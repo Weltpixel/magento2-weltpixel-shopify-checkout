@@ -2,7 +2,7 @@
     "name": "weltpixel/magento2-weltpixel-shopify-checkout",
     "description": "WeltPixel Magento 2 module integrating Shopify checkout handoff.",
     "type": "magento2-module",
-    "version": "1.10.0",
+    "version": "1.16.0",
     "license": "MIT",
     "autoload": {
         "files": [
